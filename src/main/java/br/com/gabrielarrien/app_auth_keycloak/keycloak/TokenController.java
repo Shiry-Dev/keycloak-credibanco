@@ -1,4 +1,4 @@
-package br.com.gabrielarrien.app_auth_keycloak.auth;
+package br.com.gabrielarrien.app_auth_keycloak.keycloak;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;

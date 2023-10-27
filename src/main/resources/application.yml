@@ -12,3 +12,5 @@ external:
   url:
     connection:
       keycloak: "http://localhost:8080/realms/credibanco/protocol/openid-connect/token"
+      create:
+        user: "http://localhost:8080/admin/realms/credibanco/users"
