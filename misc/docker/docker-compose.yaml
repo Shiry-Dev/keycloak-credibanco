@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    command: --sql-mode=""
+
+  adminer:
+    image: adminer
+    container_name: adminer-container
+    ports:
+      - "8086:8080"
+
+  setup:
+    image: mysql:latest
+    container_name: setup-container
+    command: >
+      bash -c "
+        apt-get update;
+        apt-get install -y mysql-client;
+        until mysql -hmysql -uroot -proot_password -e 'SHOW DATABASES'; do
+          >&2 echo 'MySQL is unavailable - sleeping';
+          sleep 1;
+        done;
+        mysql -hmysql -uroot -proot_password mydb < /data/init.sql;
+      "
+    volumes:
+      - ./mysql/init.sql:/data/init.sql
+    depends_on:
+      - mysql
+
+volumes:
+  mysql-data:
