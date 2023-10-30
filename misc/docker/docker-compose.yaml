@@ -5,7 +5,7 @@ services:
     container_name: mysql-container
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: DirectorioParticipante
     ports:
       - "3306:3306"
     volumes:
@@ -29,7 +29,7 @@ services:
           >&2 echo 'MySQL is unavailable - sleeping';
           sleep 1;
         done;
-        mysql -hmysql -uroot -proot_password mydb < /data/init.sql;
+        mysql -hmysql -uroot -proot_password DirectorioParticipante < /data/init.sql;
       "
     volumes:
       - ./mysql/init.sql:/data/init.sql
