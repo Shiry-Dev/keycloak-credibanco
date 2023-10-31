@@ -13,6 +13,10 @@ target/
 .springBeans
 .sts4-cache
 
+### mysql files ###
+
+misc/docker/mysql-data
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
